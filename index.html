@@ -10,26 +10,439 @@
     <link rel="icon" type="image/x-icon" href="assets/img/brain.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="assets/bootstrap-responsive.css" rel="stylesheet">
     <style type="text/css">
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #1abc9c;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            padding-top: 80px; 
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 2.5rem 0 1.5rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .lead-paragraph {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section:target {
+            padding-top: 100px;
+            margin-top: -100px;
+        }
+        
+        /* Navigation styling */
+        .navbar {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.2rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Workshop topics styling */
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .topic-card h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .topic-card h4:before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-right: 10px;
+            line-height: 1;
+        }
+        
+        .topic-card ul {
+            padding-left: 1.5rem;
+        }
+        
+        .topic-card li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            position: relative;
+        }
+        
+        .topic-card li:before {
+            content: "▸";
+            color: var(--secondary-color);
+            position: absolute;
+            left: -1.5rem;
+        }
+        
+        /* Program table styling */
+        .program-table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+        }
+        
+        .program-table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1.2rem 0.75rem;
+        }
+        
+        .program-table tbody td {
+            padding: 1rem 0.75rem;
+            vertical-align: middle;
+            border-color: var(--medium-gray);
+        }
+        
+        .program-table tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .speaker-card {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .speaker-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .speaker-card img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 1.2rem;
+        }
+        
+        .speaker-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .speaker-affiliation {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .date-card {
+            background: white;
+            color: var(--primary-color);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--medium-gray);
+            max-width: 800px;
+        }
+        
+        .date-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .date-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .date-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .date-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .date-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .date-note {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        /* Committee and contact styling */
+        .contact-info {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .committee-table tr {
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .committee-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .committee-table td {
+            padding: 1.2rem 0.75rem;
+            vertical-align: top;
+        }
+        
+        .person-name {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .person-affiliation {
+            color: var(--dark-gray);
+        }
+        
+        .person-contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .person-contact a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        /* Footer styling */
+        footer {
+            padding: 2.5rem 0;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .poster-img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            display: block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .content-section {
+                padding: 3rem 0;
+            }
+            
+            .content-section:target {
+                padding-top: 80px;
+                margin-top: -80px;
+            }
+            
+            .topic-card {
+                padding: 1.5rem;
+            }
+            
+            .speaker-card img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .date-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .date-item {
+                padding: 1rem 0;
+            }
+        }
+        
         .note {
             text-align: center;
-            color: red;
+            color: #e74c3c;
+            font-weight: 600;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body class="m-0 p-0" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container ">
+        <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">HBAI 2026</a>
             <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto " style="font-size: medium">
+                <ul class="navbar-nav ml-auto" style="font-size: medium">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#Workshop">Workshop</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#Program">Program</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#Call_for_Papers">Call for Papers</a></li>
@@ -41,273 +454,345 @@
         </div>
     </nav>
 
-    <section class="page-section text-black mt-5 pt-15 " id="Workshop">
+    <section class="content-section" id="Workshop">
         <div class="container">
-            <p class="h4 font-weight-bold p-1 m-1 text-center">The Fifth International Workshop on Human Brain and Artificial Intelligence (HBAI 2026)</p>
-
-            <p class="p-1 m-1 mt-4">
-                Welcome to HBAI 2026, the fifth International Workshop on Human Brain and Artificial Intelligence. This workshop is planned to be held in Bremen, Germany, on <strong>Augest 15 to 21, 2026</strong>, as a fully in-person event associated with IJCAI 2026. The quest for brain research is to uncover the nature of brain cognition, consciousness, and intelligence. Simultaneously, Artificial Intelligence (AI) is committed to the realization of machine-borne intelligence. We are currently witnessing a historic convergence of these fields into the rapidly emerging discipline of NeuroAI.
+            <div style="height: 100px;"></div>
+            <h1 class="section-title">The Fifth International Workshop on Human Brain and Artificial Intelligence (HBAI 2026)</h1>
+            
+            <p class="lead-paragraph">
+                Welcome to HBAI 2026, the fifth International Workshop on Human Brain and Artificial Intelligence. This workshop is planned to be held in Bremen, Germany, on <strong>August 15 to 21, 2026</strong>, as a fully in-person event associated with IJCAI 2026. The quest for brain research is to uncover the nature of brain cognition, consciousness, and intelligence. Simultaneously, Artificial Intelligence (AI) is committed to the realization of machine-borne intelligence. We are currently witnessing a historic convergence of these fields into the rapidly emerging discipline of NeuroAI.
             </p>
-            <p class="p-1 m-1">
+            
+            <p>
                 To bring together active researchers and practitioners at the frontiers of Artificial Intelligence and Brain Research, we propose the 5th International Workshop on Human Brain and Artificial Intelligence (HBAI 2026). This workshop continues the successful legacy of HBAI (previously held at IJCAI 2019, 2021, 2022, and 2024).
             </p>
-            <p class="p-1 m-1">
+            
+            <p>
                 HBAI 2026 will focus on mechanistically understanding the human brain through AI (Brain Computing) and developing the next generation of AI algorithms inspired by neural mechanisms (Brain-Inspired Computing). The discussion will cover neural computation, artificial general intelligence (AGI), brain-machine interfaces, and cognitive data science.
             </p>
 
-            <p class="h3 font-weight-bold p-1 m-1 mt-5 text-center">Workshop History & Audience</p>
-            <p class="p-1 m-1">
+            <h2 class="section-subtitle">Workshop History & Audience</h2>
+            
+            <p>
                 HBAI is an established workshop series successfully held at IJCAI. Past workshops have published high-quality proceedings in Springer's Communications in Computer and Information Science (CCIS) series: HBAI 2024 (CCIS Vol. 2225), HBAI 2022 (CCIS Vol. 1757), HBAI 2021 (CCIS Vol. 1369, for IJCAI-PRICAI 2020/2021), and the inaugural HBAI 2019 (CCIS Vol. 1072) which attracted ~60 attendees.
             </p>
-            <p class="p-1 m-1">
+            
+            <p>
                 Based on this history, we estimate an audience of 50-80 participants for the in-person event in Bremen. Given the high profile of our invited speakers and the surging interest in NeuroAI, we expect strong participation.
             </p>
 
-            <p class="h3 font-weight-bold p-1 m-1 text-center">Aims and Scope</p>
-            <p class="p-1 m-1">
+            <h2 class="section-subtitle">Aims and Scope</h2>
+            
+            <p>
                 HBAI 2026 aims to unveil the latest discoveries at the nexus of human brain research and AI, highlighting the synergetic potential that bridges these two domains. The workshop is designed to promote active exchange between the AI and Neuroscience communities, featuring distinguished keynote speakers and presentations of peer-reviewed research.
             </p>
 
-            <p id="Workshop_topics" class="h3 font-weight-bold  p-1 m-1 text-center">Workshop Topics</p>
-            <p class="p-1 m-1">We encourage papers with important new insights at the intersection of AI and computational brain science. Topics include, but are not limited to:</p>
-            <br>
-            <div  class = "container align-items-center">
-                <div class="row m-0  px-2 ">
-                    <div class="col-sm-12 col-md-6 col-lg-6 mb-3 p-2">
-
-                        <h4 class="text-left">NeuroAI & Biologically Plausible Intelligence:</h4>
-                        <ul class="list-group">
-                            <li><p class="font-weight-normal text-left m-0 p-1">Neuromorphic computing and Spiking Neural Networks (SNNs)</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Learning and plasticity rules</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Neural mechanism of behavior</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Generalization</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Deep learning models of the brain</p></li>
-                        </ul>
+            <h2 class="section-subtitle">Workshop Topics</h2>
+            
+            <p>We encourage papers with important new insights at the intersection of AI and computational brain science. Topics include, but are not limited to:</p>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="topic-card">
+                            <h4>NeuroAI & Biologically Plausible Intelligence:</h4>
+                            <ul>
+                                <li>Neuromorphic computing and Spiking Neural Networks (SNNs)</li>
+                                <li>Learning and plasticity rules</li>
+                                <li>Neural mechanism of behavior</li>
+                                <li>Generalization</li>
+                                <li>Deep learning models of the brain</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 mb-3 p-2">
-
-                        <h4 class="text-left">AI for Brain Science & Decoding:</h4>
-                        <ul class="list-group">
-                            <li><p class="font-weight-normal text-left m-0 p-1">Brain-Machine Interfaces (BMI) / Brain-Computer Interfaces (BCI)</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Neural decoding and encoding models</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Graph theory and knowledge graphs for brain connectivity</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Machine learning for neuroimaging (fMRI, EEG, MEG)</p></li>
-                            <li><p class="font-weight-normal text-left m-0 p-1">Analysis of brain health, aging, and disorders</p></li>
-                        </ul>
+                    <div class="col-md-6 mb-4">
+                        <div class="topic-card">
+                            <h4>AI for Brain Science & Decoding:</h4>
+                            <ul>
+                                <li>Brain-Machine Interfaces (BMI) / Brain-Computer Interfaces (BCI)</li>
+                                <li>Neural decoding and encoding models</li>
+                                <li>Graph theory and knowledge graphs for brain connectivity</li>
+                                <li>Machine learning for neuroimaging (fMRI, EEG, MEG)</li>
+                                <li>Analysis of brain health, aging, and disorders</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <header id="home" class="masthead text-black mt-2 pb-lg-0 pt-lg-3">
-            <div class="container text-center">
-                <img style="width: 80%; height: auto" src="/assets/img/poster.png" alt="poster">
+            
+            <div class="container text-center mt-5">
+                <img class="poster-img" src="/assets/img/poster.png" alt="HBAI 2026 Workshop Poster">
             </div>
-        </header>
+        </div>
     </section>
 
-    <section class="text-black mb-5" id="Program">
+    <section class="content-section" id="Program">
         <div class="container">
-            <p class="h3 detail p-1 m-1  text-center">Program for HBAI 2026</p>
-            <p class="p-1 m-1 mb-4">
+            <h1 class="section-title">Program for HBAI 2026</h1>
+            
+            <p class="lead-paragraph">
                 The workshop is designed to promote active exchange between the AI and Neuroscience communities. We have confirmed a lineup of distinguished speakers who will discuss the state-of-the-art in NeuroAI. The schedule balances these 30-minute keynotes with oral presentations from accepted papers to foster deep technical discussion.
             </p>
-            <table class="table table-bordered text-center table-hover ">
-                <thead class="thead-light">
-                    <tr>
-                        <th style="width: 20%;" class="align-middle">Time</th>
-                        <th style="width: 80%;" class="align-middle">Activity & Session Theme</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>08:30-08:40</td><td>Opening Remarks</td></tr>
-                    <tr><td>08:40-09:10</td><td>Invited Talk 1: Richard Naud  (30 min)</td></tr>
-                    <tr><td>09:10-09:40</td><td>Invited Talk 2: Andreas Tolias  (30 min)</td></tr>
-                    <tr><td>09:40-10:20</td><td>Session 1: Neural Circuit Dynamics & Computing </td></tr>
-                    <tr><td>10:20-10:40</td><td>Coffee Break and Poster Presentation</td></tr>
-                    <tr><td>10:40-11:10</td><td>Invited Talk 3: Pieter Roelfsema  (30 min)</td></tr>
-                    <tr><td>11:10-12:15</td><td>Session 2: Biologically Plausible Learning & Plasticity </td></tr>
-                    <tr><td>12:15-13:30</td><td>Lunch Break and Poster Presentation</td></tr>
-                    <tr><td>13:30-14:00</td><td>Invited Talk 4: Anton Arkhipov  (30 min)</td></tr>
-                    <tr><td>14:00-14:30</td><td>Invited Talk 5: Maria Eckstein  (30 min)</td></tr>
-                    <tr><td>14:30-15:30</td><td>Session 3: Brain-Machine Intelligence & Decoding </td></tr>
-                    <tr><td>15:30-16:00</td><td>Coffee Break and Poster Presentation</td></tr>
-                    <tr><td>16:00-17:30</td><td>Session 4: Cognitive AI & Future Directions </td></tr>
-                </tbody>
-            </table>
+            
+            <div class="table-responsive program-table">
+                <table class="table table-bordered text-center table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 20%;" class="align-middle">Time</th>
+                            <th style="width: 80%;" class="align-middle">Activity & Session Theme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>08:30-08:40</td><td>Opening Remarks</td></tr>
+                        <tr><td>08:40-09:10</td><td>Invited Talk 1: Richard Naud (30 min)</td></tr>
+                        <tr><td>09:10-09:40</td><td>Invited Talk 2: Andreas Tolias (30 min)</td></tr>
+                        <tr><td>09:40-10:20</td><td>Session 1: Neural Circuit Dynamics & Computing</td></tr>
+                        <tr><td>10:20-10:40</td><td>Coffee Break and Poster Presentation</td></tr>
+                        <tr><td>10:40-11:10</td><td>Invited Talk 3: Pieter Roelfsema (30 min)</td></tr>
+                        <tr><td>11:10-12:15</td><td>Session 2: Biologically Plausible Learning & Plasticity</td></tr>
+                        <tr><td>12:15-13:30</td><td>Lunch Break and Poster Presentation</td></tr>
+                        <tr><td>13:30-14:00</td><td>Invited Talk 4: Anton Arkhipov (30 min)</td></tr>
+                        <tr><td>14:00-14:30</td><td>Invited Talk 5: Maria Eckstein (30 min)</td></tr>
+                        <tr><td>14:30-15:30</td><td>Session 3: Brain-Machine Intelligence & Decoding</td></tr>
+                        <tr><td>15:30-16:00</td><td>Coffee Break and Poster Presentation</td></tr>
+                        <tr><td>16:00-17:30</td><td>Session 4: Cognitive AI & Future Directions</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="container mt-5">
-                <div class="col-12 text-center mb-5">
-                    <h1>Invited Speakers: Frontiers in NeuroAI</h1>
-                </div>
-                <div class="row justify-content-center row-custom">
-                    <div class="col-md-4 col-sm-6 justify-content-center text-center mb-4">
-                        <img style="width: 80%; height: auto" src="/assets/img/richard_naud.jpg" alt="Richard Naud">
-                        <p style="color: blue;">Richard Naud</p>
-                        <p style="color: lightseagreen">University of Ottawa</p>
+            <h2 class="section-subtitle text-center mt-5 mb-4">Invited Speakers: Frontiers in NeuroAI</h2>
+            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center mb-5">
+                        <div class="speaker-card">
+                            <img src="/assets/img/richard_naud.jpg" alt="Richard Naud">
+                            <div class="speaker-name">Richard Naud</div>
+                            <div class="speaker-affiliation">University of Ottawa</div>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 justify-content-center text-center mb-4">
-                        <img style="width: 80%; height: auto" src="/assets/img/andreas_tolias.jpg" alt="Andreas Tolias">
-                        <p style="color: blue;">Andreas Tolias</p>
-                        <p style="color: lightseagreen">Stanford University</p>
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center mb-5">
+                        <div class="speaker-card">
+                            <img src="/assets/img/andreas_tolias.jpg" alt="Andreas Tolias">
+                            <div class="speaker-name">Andreas Tolias</div>
+                            <div class="speaker-affiliation">Stanford University</div>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 justify-content-center text-center mb-4">
-                        <img style="width: 80%; height: auto" src="/assets/img/pieter_roelfsema.jpg" alt="Pieter Roelfsema">
-                        <p style="color: blue;">Pieter Roelfsema</p>
-                        <p style="color: lightseagreen">Netherlands Institute for Neuroscience</p>
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center mb-5">
+                        <div class="speaker-card">
+                            <img src="/assets/img/pieter_roelfsema.jpg" alt="Pieter Roelfsema">
+                            <div class="speaker-name">Pieter Roelfsema</div>
+                            <div class="speaker-affiliation">Netherlands Institute for Neuroscience</div>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 justify-content-center text-center mb-4">
-                        <img style="width: 80%; height: auto" src="/assets/img/anton_arkhipov.jpg" alt="Anton Arkipov">
-                        <p style="color: blue;">Anton Arkhipov</p>
-                        <p style="color: lightseagreen">Allen Institute for Brain Science</p>
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center mb-5">
+                        <div class="speaker-card">
+                            <img src="/assets/img/anton_arkhipov.jpg" alt="Anton Arkipov">
+                            <div class="speaker-name">Anton Arkhipov</div>
+                            <div class="speaker-affiliation">Allen Institute for Brain Science</div>
+                        </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 justify-content-center text-center mb-4">
-                        <img style="width: 80%; height: auto" src="/assets/img/maria_eckstein.jpg" alt="Maria Eckstein">
-                        <p style="color: blue;">Maria Eckstein</p>
-                        <p style="color: lightseagreen">DeepMind/Google</p>
+                    <div class="col-lg-4 col-md-6 col-sm-6 text-center mb-5">
+                        <div class="speaker-card">
+                            <img src="/assets/img/maria_eckstein.jpg" alt="Maria Eckstein">
+                            <div class="speaker-name">Maria Eckstein</div>
+                            <div class="speaker-affiliation">DeepMind/Google</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section  class = "page-section text-black mt-5 mb-0 pb-0 pt-0" id ="Call_for_Papers">
-        <div  class = "container">
-            <p class="h3 font-weight-bold p-1 m-1  text-center" >Call for Papers</p>
-            <p class="font-weight-bold p-1 m-1  text-center"  >The Fifth International Workshop on Human Brain and Artificial Intelligence (HBAI 2026)</p>
-            <p class="font-weight-bold p-1 m-1  text-center"  >Held in Conjunction With IJCAI 2026</p>
-            <p class="font-weight-bold p-1 m-1  text-center"  >August 15 to 21, 2026 - Bremen, Germany</p>
+    <section class="content-section" id="Call_for_Papers">
+        <div class="container">
+            <h1 class="section-title">Call for Papers</h1>
+            
+            <h2 class="text-center mb-3" style="color: var(--secondary-color);">The Fifth International Workshop on Human Brain and Artificial Intelligence (HBAI 2026)</h2>
+            <h3 class="text-center mb-4" style="color: var(--dark-gray); font-weight: 600;">Held in Conjunction With IJCAI 2026</h3>
+            <h3 class="text-center mb-5" style="color: var(--dark-gray); font-weight: 600;">August 15 to 21, 2026 - Bremen, Germany</h3>
+            
+            <div id="important_dates" class="date-card">
+                <h3>Important Dates (Tentative)</h3>
+                <div class="date-item">
+                    <div class="date-label">Submission Deadline</div>
+                    <div class="date-value">May 15, 2026</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-label">Author Notification</div>
+                    <div class="date-value">TBD</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-label">Camera Ready Deadline</div>
+                    <div class="date-value">TBD</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-label">Workshop Date</div>
+                    <div class="date-value">TBD (one day within August 16-21)</div>
+                </div>
+                <div class="date-note">
+                    All deadlines are 23:59 Anywhere on Earth (UTC−12), and all dates refer to the year 2026
+                </div>
+            </div>
         </div>
     </section>
 
-    <section  class="p-1 m-1 mb-1" id = "important_dates">
-        <div  class = "container">
-            <p class="detail h3 font-weight-bold p-1 mt-4 mb-4  text-center" >Important Dates (Tentative)</p>
-            <p class="p-1 m-1  text-center">
-                <B>Submission Deadline: </B> May 15, 2026 <br />
-                <B>Author Notification: </B>  TBD <br />
-                <B>Camera Ready Deadline: </B>  TBD <br />
-                <B>Workshop Date: </B>  TBD (one day within August 16-21) <br />
-                <b>All deadlines are 23:59 Anywhere on Earth (UTC−12), and all dates refer to the year 2026</b><br/>
-            </p>
+    <section class="content-section" id="paper_submission">
+        <div class="container">
+            <h1 class="section-title">Paper Submission</h1>
+            
+            <div class="contact-info">
+                <p class="text-center">
+                    HBAI 2026 will not accept any paper that, at the time of submission, is under review for, has already been published in, or has already been accepted for publication in, a journal or another venue with formally published proceedings.
+                </p>
+                
+                <p class="text-center">
+                    At least one author of each accepted paper is required to participate and present the work in person at the workshop in Bremen.
+                </p>
+                
+                <p class="text-center">
+                    All new papers will be peer-reviewed in a double-blind manner.
+                </p>
+                
+                <p class="text-center">
+                    All papers for the review should be submitted through the OpenReview.
+                    <br><br>
+                    <a href="https://openreview.net/group?id=ijcai.org/IJCAI-ECAI/2026/Workshop/HBAI" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt mr-2"></i>Submit via OpenReview
+                    </a>
+                </p>
+                
+                <p class="text-center mt-4">
+                    <strong>Formatting guidelines:</strong> <br />
+                    <br>...
+                </p>
+                
+                <div class="text-center mt-4 p-3" style="background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
+                    <h4 class="mb-3" style="color: var(--primary-color);">Primary Contact</h4>
+                    <p class="mb-2"><strong>Xinyu Zhao</strong></p>
+                    <p class="mb-2">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-2"></i>
+                        (+86) 13717645856
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="p-1 m-1 mb-5" id="paper_submission">
-        <div  class = "container p-0 mb-3">
-            <p class="h3 font-weight-bold text-center mb-4">Paper Submission</p>
-            <p class="detail  p-0 mt-3 mb-3 text-center">
-                HBAI 2026 will not accept any paper that, at the time of submission, is under review for, has already been published in, or has already been accepted for publication in, a journal or another venue with formally published proceedings.
-            </p>
-            <p class="detail p-0 mb-3 text-center">
-                At least one author of each accepted paper is required to participate and present the work in person at the workshop in Bremen.
-            </p>
-            <p class="detail p-0 mb-3 text-center">
-                All new papers will be peer-reviewed in a double-blind manner.
-            </p>
-            <p class="detail p-0 mb-3 text-center">
-                All papers for the review should be submitted through the OpenReview.
-                The submission link: <a href="https://openreview.net/group?id=ijcai.org/IJCAI-ECAI/2026/Workshop/HBAI" target="_blank">https://openreview.net/group?id=ijcai.org/IJCAI-ECAI/2026/Workshop/HBAI<a>
-            </p>
-            <p class="detail p-0 mb-3 text-center">
-                <B>Formatting guidelines:</B> <br />
-                <br>...
-                <!-- <a href="https://..." >download</a>) -->
-            </p>
-            <p class="detail  p-0 m-0 text-center">
-                <B>Primary Contact: </B> <br />
-                Xinyu Zhao<br/>
-                Email: <a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a> <br/>
-                Phone: (+86) 13717645856
-            </p>
+    <section class="content-section" id="organizing_committee">
+        <div class="container">
+            <h1 class="section-title">Organizing Committee</h1>
+            
+            <div class="committee-table">
+                <table class="table table-hover table-borderless">
+                    <tr class="row p-0 mt-3 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Xinyu Zhao</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Tsinghua University</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a><br>
+                            Homepage: <a href="https://mcgovern.life.tsinghua.edu.cn/en/infoshow-2434.html" target="_blank">Link</a>
+                        </td>
+                    </tr>
+                    <tr class="row p-0 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Guozhang Chen</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Peking University</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:guozhang.chen@pku.edu.cn">guozhang.chen@pku.edu.cn</a><br>
+                            Homepage: <a href="https://cs.pku.edu.cn/info/1210/2904.htm" target="_blank">Link</a>
+                        </td>
+                    </tr>
+                    <tr class="row p-0 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Bojian Yin</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Institute of Automation, Chinese Academy of Sciences</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:bojian.yin@ia.ac.cn">bojian.yin@ia.ac.cn</a><br>
+                            Homepage: on going
+                        </td>
+                    </tr>
+                    <tr class="row p-0 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yu Qi</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Zhejiang University</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:qiyu@zju.edu.cn">qiyu@zju.edu.cn</a><br>
+                            Homepage: <a href="https://person.zju.edu.cn/en/yuqi" target="_blank">Link</a>
+                        </td>
+                    </tr>
+                    <tr class="row p-0 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yue Liu</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Florida Atlantic University</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:yueliu@fau.edu">yueliu@fau.edu</a><br>
+                            Homepage: <a href="https://liuyuue.github.io" target="_blank">Link</a>
+                        </td>
+                    </tr>
+                    <tr class="row p-0 mb-3">
+                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Qianhui Liu</td>
+                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Shandong University</td>
+                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
+                            <a href="mailto:qhliu@sdu.edu.cn">qhliu@sdu.edu.cn</a><br>
+                            Homepage: on going
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </section>
 
-    <section class="p-1 m-1 mb-5" id="organizing_committee">
-        <div class="container p-0 mb-3">
-            <p class="h3 detail p-1 m-1 mb-4 text-center">Organizing Committee </p>
-            <table class="table table-hover table-borderless">
-                <tr class="row p-0 mt-3 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Xinyu Zhao</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Tsinghua University</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a><br>Homepage: <a href="https://mcgovern.life.tsinghua.edu.cn/en/infoshow-2434.html" target="_blank">Link</a></td>
-                </tr>
-                <tr class="row p-0 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Guozhang Chen</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Peking University</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:guozhang.chen@pku.edu.cn">guozhang.chen@pku.edu.cn</a><br>Homepage: <a href="https://cs.pku.edu.cn/info/1210/2904.htm" target="_blank">Link</a></td>
-                </tr>
-                <tr class="row p-0 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Bojian Yin</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Institute of Automation, Chinese Academy of Sciences</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:bojian.yin@ia.ac.cn">bojian.yin@ia.ac.cn</a><br>Homepage: on going</td>
-                </tr>
-                <tr class="row p-0 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Yu Qi</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Zhejiang University</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:qiyu@zju.edu.cn">qiyu@zju.edu.cn</a><br>Homepage: <a href="https://person.zju.edu.cn/en/yuqi" target="_blank">Link</a></td>
-                </tr>
-                <tr class="row p-0 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Yue Liu</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Florida Atlantic University</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:yueliu@fau.edu">yueliu@fau.edu</a><br>Homepage: <a href="https://liuyuue.github.io" target="_blank">Link</a></td>
-                </tr>
-                <tr class="row p-0 mb-3">
-                    <td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Qianhui Liu</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center">Shandong University</td>
-                    <td class="col-sm-12 col-md-4 col-lg-4 text-center"><a href="mailto:qhliu@sdu.edu.cn">qhliu@sdu.edu.cn</a><br>Homepage: on going</td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
-    <section class="p-1 m-1 mb-5" id="program_committee">
-        <div class="container p-0 mb-3">
-            <p class="h3 detail p-1 m-1 text-center">Tentative Program Committee </p>
-            <p class="detail p-1 m-1  mb-4 text-center">(Including full names and affiliations, in alphabetical order by the member's first name)</p>
-            <table class="table table-hover table-borderless">
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">An Zeng</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Guangdong University of Technology, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Bo Lei</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">The Beijing Academy of Artificial Intelligence, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Chaifei Fan</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Stanford University, US</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Chaoming Wang</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Guangdong Institute of Intelligence Science and Technology, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Chun Xu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">The Institute of Neuroscience, Chinese Academy of Sciences, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Dan Pan</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Polytechnic Normal University Guangzhou, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Darrel Haufler</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Allen Institute for Brain Science, US</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Dong Li</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Nantong University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Dongping Yang</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Shenzhen Loop Area Institute, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Douglas Zhou</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Shanghai Jiaotong University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Guoqi Li</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">The Institute of Automation, Chinese Academy of Sciences, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Hemmings Wu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Second Affiliated Hospital, Zhejiang University School of Medicine, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Huan Gao</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Carnegie Mellon University, US</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Jiajun Chen</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Zhejiang University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Jian Liu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">University of Birmingham, UK</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Jibin Wu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Hong Kong Polytechnic University, Hong Kong</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Junjie Jiang</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Xi'an Jiaotong University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Kai Du</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Tsinghua University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Le Wu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">University of Science and Technology of China, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Lei Deng</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Tsinghua University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Pedro V. Carelli</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Universidade Federal de Pernambuco, Brazil</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Qing Li</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Beijing Institute of Technology, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Quanying Liu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Southern University of Science and Technology, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Richard Naud</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">University of Ottawa, Canada</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Sander M Bohte</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Centrum Wiskunde & Informatica, Netherlands</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Sebastian Otte</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">University of Tübingen, Germany</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Shinya Ito</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Allen Institute for Brain Science, US</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Shuang Qiu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Institute of Automation, Chinese Academy of Sciences, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Songting Li</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Shanghai Jiaotong University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Taiping Zeng</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Fudan University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Tiejun Huang</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Peking University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Wenguan Wang</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Zhejiang University, China</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Wolfgang Maass</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Graz University of Technology, Austria</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Yujie Wu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Hong Kong Polytechnic University, Hong Kong</td></tr>
-                <tr class="row p-0 m-0"><td class="col-sm-12 col-md-4 col-lg-4 font-weight-bold text-center">Zhaofei Yu</td><td class="col-sm-12 col-md-8 col-lg-8 text-center">Peking University, China</td></tr>
-            </table>
+    <section class="content-section" id="program_committee">
+        <div class="container">
+            <h1 class="section-title">Program Committee</h1>
+            <p class="text-center mb-5">(Including full names and affiliations, in alphabetical order by the member's first name)</p>
+            
+            <div class="committee-table">
+                <table class="table table-hover table-borderless">
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">An Zeng</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Guangdong University of Technology, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Bo Lei</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">The Beijing Academy of Artificial Intelligence, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Chaifei Fan</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Stanford University, US</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Chaoming Wang</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Guangdong Institute of Intelligence Science and Technology, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Chun Xu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">The Institute of Neuroscience, Chinese Academy of Sciences, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Dan Pan</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Polytechnic Normal University Guangzhou, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Darrel Haufler</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Allen Institute for Brain Science, US</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Dong Li</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Nantong University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Dongping Yang</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Shenzhen Loop Area Institute, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Douglas Zhou</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Shanghai Jiaotong University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Guoqi Li</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">The Institute of Automation, Chinese Academy of Sciences, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Hemmings Wu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Second Affiliated Hospital, Zhejiang University School of Medicine, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Huan Gao</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Carnegie Mellon University, US</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Jiajun Chen</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Zhejiang University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Jian Liu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">University of Birmingham, UK</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Jibin Wu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Hong Kong Polytechnic University, Hong Kong</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Junjie Jiang</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Xi'an Jiaotong University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Kai Du</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Tsinghua University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Le Wu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">University of Science and Technology of China, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Lei Deng</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Tsinghua University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Pedro V. Carelli</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Universidade Federal de Pernambuco, Brazil</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Qing Li</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Beijing Institute of Technology, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Quanying Liu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Southern University of Science and Technology, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Richard Naud</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">University of Ottawa, Canada</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Sander M Bohte</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Centrum Wiskunde & Informatica, Netherlands</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Sebastian Otte</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">University of Tübingen, Germany</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Shinya Ito</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Allen Institute for Brain Science, US</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Shuang Qiu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Institute of Automation, Chinese Academy of Sciences, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Songting Li</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Shanghai Jiaotong University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Taiping Zeng</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Fudan University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Tiejun Huang</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Peking University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Wenguan Wang</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Zhejiang University, China</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Wolfgang Maass</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Graz University of Technology, Austria</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yujie Wu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Hong Kong Polytechnic University, Hong Kong</td></tr>
+                    <tr class="row p-0 m-0"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Zhaofei Yu</td><td class="col-md-8 col-lg-8 person-affiliation text-center text-md-left">Peking University, China</td></tr>
+                </table>
+            </div>
         </div>
     </section>
 
     <!-- Footer-->
     <footer class="footer bg-secondary">
-        <div class="container text-center">
-            <p class = "text-center">@HBAI 2026</p>
+        <div class="container text-center py-4">
+            <p class="mb-0">@HBAI 2026</p>
         </div>
     </footer>
 
