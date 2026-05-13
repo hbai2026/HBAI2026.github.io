@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="HBAI 2026: The Fifth International Workshop on Human Brain and Artificial Intelligence, held in conjunction with IJCAI 2026, Bremen, Germany." />
+    <meta name="author" content="HBAI Organizing Committee" />
     <title>HBAI 2026: The Fifth International Workshop on Human Brain and Artificial Intelligence</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/brain.ico" />
@@ -431,6 +431,73 @@
         html {
             scroll-behavior: smooth;
         }
+
+        .deadline-announcement {
+            background: linear-gradient(95deg, #FFF8E7 0%, #FFEFD0 100%);
+            border-left: 6px solid #f39c12;
+            border-radius: 16px;
+            padding: 1rem 1.8rem;
+            margin: 0.5rem 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: gap-between;
+            gap: 0.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+        .announcement-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .announcement-content i {
+            font-size: 2.2rem;
+            color: #e67e22;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        .announcement-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #c0392b;
+            background: rgba(243, 156, 18, 0.1);
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            letter-spacing: -0.2px;
+        }
+        .announcement-text strong {
+            color: #d35400;
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+        .announcement-date {
+            background: #f39c12;
+            color: #2c3e50;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 640px) {
+            .deadline-announcement {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1.2rem;
+            }
+            .announcement-content {
+                width: 100%;
+            }
+            .announcement-date {
+                align-self: flex-start;
+                margin-top: 0.25rem;
+            }
+            .announcement-text {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="m-0 p-0" id="page-top">
@@ -457,6 +524,19 @@
     <section class="content-section" id="Workshop">
         <div class="container">
             <div style="height: 100px;"></div>
+
+            <div class="deadline-announcement">
+                <div class="announcement-content">
+                    <i class="fas fa-bullhorn fa-fw"></i>
+                    <div class="announcement-text">
+                                📢 <strong>Announcement:</strong> We extend the paper submission deadline to 
+                    </div>
+                </div>
+                <div class="announcement-date">
+                    <i class="far fa-calendar-alt mr-1"></i> May 31st, 2026
+                </div>
+            </div>
+
             <h1 class="section-title">The Fifth International Workshop on Human Brain and Artificial Intelligence (HBAI 2026)</h1>
             
             <p class="lead-paragraph">
@@ -689,54 +769,12 @@
             
             <div class="committee-table">
                 <table class="table table-hover table-borderless">
-                    <tr class="row p-0 mt-3 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Xinyu Zhao</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Tsinghua University</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a><br>
-                            Homepage: <a href="https://mcgovern.life.tsinghua.edu.cn/en/infoshow-2434.html" target="_blank">Link</a>
-                        </td>
-                    </tr>
-                    <tr class="row p-0 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Guozhang Chen</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Peking University</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:guozhang.chen@pku.edu.cn">guozhang.chen@pku.edu.cn</a><br>
-                            Homepage: <a href="https://cs.pku.edu.cn/info/1210/2904.htm" target="_blank">Link</a>
-                        </td>
-                    </tr>
-                    <tr class="row p-0 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Bojian Yin</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Institute of Automation, Chinese Academy of Sciences</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:bojian.yin@ia.ac.cn">bojian.yin@ia.ac.cn</a><br>
-                            Homepage: on going
-                        </td>
-                    </tr>
-                    <tr class="row p-0 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yu Qi</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Zhejiang University</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:qiyu@zju.edu.cn">qiyu@zju.edu.cn</a><br>
-                            Homepage: <a href="https://person.zju.edu.cn/en/yuqi" target="_blank">Link</a>
-                        </td>
-                    </tr>
-                    <tr class="row p-0 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yue Liu</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Florida Atlantic University</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:yueliu@fau.edu">yueliu@fau.edu</a><br>
-                            Homepage: <a href="https://liuyuue.github.io" target="_blank">Link</a>
-                        </td>
-                    </tr>
-                    <tr class="row p-0 mb-3">
-                        <td class="col-md-4 col-lg-4 person-name text-center text-md-left">Qianhui Liu</td>
-                        <td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Shandong University</td>
-                        <td class="col-md-4 col-lg-4 person-contact text-center text-md-left">
-                            <a href="mailto:qhliu@sdu.edu.cn">qhliu@sdu.edu.cn</a><br>
-                            Homepage: on going
-                        </td>
-                    </tr>
+                    <tr class="row p-0 mt-3 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Xinyu Zhao</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Tsinghua University</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:zhaoxinyu@mail.tsinghua.edu.cn">zhaoxinyu@mail.tsinghua.edu.cn</a><br>Homepage: <a href="https://mcgovern.life.tsinghua.edu.cn/en/infoshow-2434.html" target="_blank">Link</a></td></tr>
+                    <tr class="row p-0 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Guozhang Chen</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Peking University</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:guozhang.chen@pku.edu.cn">guozhang.chen@pku.edu.cn</a><br>Homepage: <a href="https://cs.pku.edu.cn/info/1210/2904.htm" target="_blank">Link</a></td></tr>
+                    <tr class="row p-0 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Bojian Yin</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Institute of Automation, Chinese Academy of Sciences</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:bojian.yin@ia.ac.cn">bojian.yin@ia.ac.cn</a><br>Homepage: on going</td></tr>
+                    <tr class="row p-0 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yu Qi</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Zhejiang University</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:qiyu@zju.edu.cn">qiyu@zju.edu.cn</a><br>Homepage: <a href="https://person.zju.edu.cn/en/yuqi" target="_blank">Link</a></td></tr>
+                    <tr class="row p-0 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Yue Liu</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Florida Atlantic University</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:yueliu@fau.edu">yueliu@fau.edu</a><br>Homepage: <a href="https://liuyuue.github.io" target="_blank">Link</a></td></tr>
+                    <tr class="row p-0 mb-3"><td class="col-md-4 col-lg-4 person-name text-center text-md-left">Qianhui Liu</td><td class="col-md-4 col-lg-4 person-affiliation text-center text-md-left">Shandong University</td><td class="col-md-4 col-lg-4 person-contact text-center text-md-left"><a href="mailto:qhliu@sdu.edu.cn">qhliu@sdu.edu.cn</a><br>Homepage: on going</td></tr>
                 </table>
             </div>
         </div>
@@ -792,7 +830,7 @@
     <!-- Footer-->
     <footer class="footer bg-secondary">
         <div class="container text-center py-4">
-            <p class="mb-0">@HBAI 2026</p>
+            <p class="mb-0">© HBAI 2026</p>
         </div>
     </footer>
 
